@@ -1,4 +1,4 @@
-#OpenBMC D-bus 核心功能實作
+#OpenBMC D-bus 透過指令 busctl 探索 OpenBMC 底層的 D-Bus 物件路徑
 
 步驟
 1.透過SSH 連線到QEMU 模擬器中
@@ -6,7 +6,7 @@
 2.驗證環境是否在OpenBmc裡面
   cat /etc/os-release
 ✅ Result
-ID=openbmc-phosphor #代表這是一個基於 OpenBMC 官方專案的 Phosphor 發行版。
+ID=openbmc-phosphor 
 NAME="Phosphor OpenBMC (Phosphor OpenBMC Project Reference Distro)" 
 VERSION="3.1.0-dev"
 VERSION_ID=3.1.0-dev-947-g80e2959a0b
@@ -17,3 +17,113 @@ BUILD_ID="20260816135335"
 OPENBMC_TARGET_MACHINE="evb-ast2600"
 EXTENDED_VERSION="3.1.0-dev-947-g80e2959a0b"
 
+3.列出所有 D-Bus 服務
+  busctl list
+
+4.檢查特定的 D-Bus 服務狀態
+  busctl status xyz.openbmc_project.State.Host
+
+5.查看 BMC 狀態
+  busctl get-property xyz.openbmc_project.State.BMC /xyz/openbmc_project/state/bmc0 xyz.openbmc_project.State.BMC CurrentBMCState
+
+6.檢視指定物件底下的所有介面與屬性
+  busctl introspect xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0
+✅ Result
+s "xyz.openbmc_project.State.BMC.BMCState.Quiesced"
+
+7.讀取 D-Bus 物件的特定屬性數值
+  busctl get-property xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host RequestedHostTransition
+✅ Result
+s "xyz.openbmc_project.State.Host.Transition.Off"
+
+8.透過 D-Bus 發送方法呼叫（例如執行開機指令）
+busctl call xyz.openbmc_project.State.Host /
+xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host SetHostTransition s xyz.openbmc_project.State.Host.Transition.On
+
+9.檢視日誌服務樹狀圖
+  busctl tree xyz.openbmc_project.Logging
+✅ Result
+`- /xyz
+  `- /xyz/openbmc_project
+    `- /xyz/openbmc_project/logging
+      |- /xyz/openbmc_project/logging/entry
+      | |- /xyz/openbmc_project/logging/entry/10
+      | |- /xyz/openbmc_project/logging/entry/11
+      | |- /xyz/openbmc_project/logging/entry/12
+      | |- /xyz/openbmc_project/logging/entry/13
+      | |- /xyz/openbmc_project/logging/entry/14
+      | |- /xyz/openbmc_project/logging/entry/15
+      | |- /xyz/openbmc_project/logging/entry/16
+      | |- /xyz/openbmc_project/logging/entry/17
+      | |- /xyz/openbmc_project/logging/entry/18
+      | |- /xyz/openbmc_project/logging/entry/19
+      | |- /xyz/openbmc_project/logging/entry/2
+      | |- /xyz/openbmc_project/logging/entry/20
+      | |- /xyz/openbmc_project/logging/entry/21
+      | |- /xyz/openbmc_project/logging/entry/22
+      | |- /xyz/openbmc_project/logging/entry/23
+      | |- /xyz/openbmc_project/logging/entry/24
+      | |- /xyz/openbmc_project/logging/entry/25
+      | |- /xyz/openbmc_project/logging/entry/26
+      | |- /xyz/openbmc_project/logging/entry/27
+      | |- /xyz/openbmc_project/logging/entry/28
+      | |- /xyz/openbmc_project/logging/entry/29
+      | |- /xyz/openbmc_project/logging/entry/3
+      | |- /xyz/openbmc_project/logging/entry/30
+      | |- /xyz/openbmc_project/logging/entry/31
+      | |- /xyz/openbmc_project/logging/entry/32
+      | |- /xyz/openbmc_project/logging/entry/33
+      | |- /xyz/openbmc_project/logging/entry/34
+      | |- /xyz/openbmc_project/logging/entry/35
+      | |- /xyz/openbmc_project/logging/entry/4
+      | |- /xyz/openbmc_project/logging/entry/5
+      | |- /xyz/openbmc_project/logging/entry/6
+      | |- /xyz/openbmc_project/logging/entry/7
+      | |- /xyz/openbmc_project/logging/entry/8
+      | `- /xyz/openbmc_project/logging/entry/9
+      `- /xyz/openbmc_project/logging/internal
+        `- /xyz/openbmc_project/logging/internal/manager
+
+10.執行單筆刪除指令
+  busctl call xyz.openbmc_project.Logging /xyz/openbmc_project/logging/entry/10 xyz.openbmc_project.Object.Delete Delete
+  再輸入 busctl tree xyz.openbmc_project.Logging 確認是否刪除
+✅ Result
+`- /xyz
+  `- /xyz/openbmc_project
+    `- /xyz/openbmc_project/logging
+      |- /xyz/openbmc_project/logging/entry
+      | |- /xyz/openbmc_project/logging/entry/11
+      | |- /xyz/openbmc_project/logging/entry/12
+      | |- /xyz/openbmc_project/logging/entry/13
+      | |- /xyz/openbmc_project/logging/entry/14
+      | |- /xyz/openbmc_project/logging/entry/15
+      | |- /xyz/openbmc_project/logging/entry/16
+      | |- /xyz/openbmc_project/logging/entry/17
+      | |- /xyz/openbmc_project/logging/entry/18
+      | |- /xyz/openbmc_project/logging/entry/19
+      | |- /xyz/openbmc_project/logging/entry/2
+      | |- /xyz/openbmc_project/logging/entry/20
+      | |- /xyz/openbmc_project/logging/entry/21
+      | |- /xyz/openbmc_project/logging/entry/22
+      | |- /xyz/openbmc_project/logging/entry/23
+      | |- /xyz/openbmc_project/logging/entry/24
+      | |- /xyz/openbmc_project/logging/entry/25
+      | |- /xyz/openbmc_project/logging/entry/26
+      | |- /xyz/openbmc_project/logging/entry/27
+      | |- /xyz/openbmc_project/logging/entry/28
+      | |- /xyz/openbmc_project/logging/entry/29
+      | |- /xyz/openbmc_project/logging/entry/3
+      | |- /xyz/openbmc_project/logging/entry/30
+      | |- /xyz/openbmc_project/logging/entry/31
+      | |- /xyz/openbmc_project/logging/entry/32
+      | |- /xyz/openbmc_project/logging/entry/33
+      | |- /xyz/openbmc_project/logging/entry/34
+      | |- /xyz/openbmc_project/logging/entry/35
+      | |- /xyz/openbmc_project/logging/entry/4
+      | |- /xyz/openbmc_project/logging/entry/5
+      | |- /xyz/openbmc_project/logging/entry/6
+      | |- /xyz/openbmc_project/logging/entry/7
+      | |- /xyz/openbmc_project/logging/entry/8
+      | `- /xyz/openbmc_project/logging/entry/9
+      `- /xyz/openbmc_project/logging/internal
+        `- /xyz/openbmc_project/logging/internal/manager
