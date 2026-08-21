@@ -5,5 +5,15 @@
   ssh root@localhost -p 2222
 2.驗證環境是否在OpenBmc裡面
   cat /etc/os-release
-
+✅ Result
+ID=openbmc-phosphor #代表這是一個基於 OpenBMC 官方專案的 Phosphor 發行版。
+NAME="Phosphor OpenBMC (Phosphor OpenBMC Project Reference Distro)" 
+VERSION="3.1.0-dev"
+VERSION_ID=3.1.0-dev-947-g80e2959a0b
+VERSION_CODENAME="styhead"
+PRETTY_NAME="Phosphor OpenBMC (Phosphor OpenBMC Project Reference Distro) 3.1.0-dev"
+CPE_NAME="cpe:/o:openembedded:openbmc-phosphor:3.1.0-dev-947-g80e2959a0b"
+BUILD_ID="20260816135335"
+OPENBMC_TARGET_MACHINE="evb-ast2600"
+EXTENDED_VERSION="3.1.0-dev-947-g80e2959a0b"
 
