@@ -1,1 +1,35 @@
+# OpenBMC Bitbake 映像檔建置與編譯實作
 
+步驟
+1.安裝必要套件
+  sudo apt update
+  sudo apt install -y gawk wget git diffstat unzip texinfo gcc build-essential \ #提供原始碼下載（wget/git）、解壓縮、C/C++編譯器以及基礎建置環境。
+  chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils \ #用於調整執行檔路徑、處理壓縮封裝，並提供 Bitbake 運作所需的 Python 執行與互動環境。
+  iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev xterm \ #支援 Git 的 Python 模組、設定檔動態產生，以及 QEMU 模擬器開窗所需的圖形函式庫與終端機。
+  zstd lz4 #現代高效能壓縮加速工具。
+2.下載 OpenBMC 專案
+  git clone https://github.com/openbmc/openbmc.git
+3.進入專案資料夾
+  cd ~/openbmc
+4.初始化環境
+  . setup evb-ast2600 #ast2600 是 ASPEED 推出的 BMC 晶片型號，OpenBMC 官方對 evb-ast2600 提供了非常完善的 QEMU 模擬支援。
+5.編譯映像檔
+  bitbake obmc-phosphor-image #將OpenBMC作業系統所需的全部元件編譯過一遍。
+6.啟動Qemu
+  runqemu evb-ast2600 obmc-phosphor-image slirp
+
+✅ Result
+runqemu - INFO - Running MACHINE=evb-ast2600 bitbake -e  obmc-phosphor-image...
+runqemu - INFO - Continuing with the following parameters:
+KERNEL: []
+MACHINE: [evb-ast2600]
+FSTYPE: [static.mtd]
+ROOTFS: [/home/jimmy/openbmc/build/evb-ast2600/tmp/deploy/images/evb-ast2600/obmc-phosphor-image-evb-ast2600.static.mtd]
+Disabled. Changes on rootfs will be kept after QEMU shutdown.
+CONFFILE: [/home/jimmy/openbmc/build/evb-ast2600/tmp/deploy/images/evb-ast2600/obmc-phosphor-image-evb-ast2600.qemuboot.conf]
+
+runqemu - INFO - Network configuration: ip=dhcp
+runqemu - INFO - Port forward: hostfwd=tcp::8443-:443 hostfwd=tcp::2222-:22 hostfwd=tcp::2323-:23
+runqemu - INFO - Running /home/jimmy/openbmc/build/evb-ast2600/tmp/work/x86_64-linux/qemu-helper-native/1.0/recipe-sysroot-native/usr/bin/qemu-system-arm -net nic,netdev=net0 -netdev user,id=net0,hostfwd=tcp::8443-:443,hostfwd=tcp::2222-:22,hostfwd=tcp::2323-:23  -drive file=/home/jimmy/openbmc/build/evb-ast2600/tmp/deploy/images/evb-ast2600/obmc-phosphor-image-evb-ast2600.static.mtd,if=mtd,format=raw   -machine ast2600-evb   -m 1G -serial mon:vc -serial null -display none  
+
+runqemu - INFO - Host uptime: 196.25
