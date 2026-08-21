@@ -16,7 +16,8 @@
 5.編譯映像檔
   bitbake obmc-phosphor-image #將OpenBMC作業系統所需的全部元件編譯過一遍。
 6.啟動Qemu
-  runqemu evb-ast2600 obmc-phosphor-image slirp
+  QB_SLIRP_OPT="-netdev user,id=net0,hostfwd=tcp::8443-:443,hostfwd=tcp::2222-:22,hostfwd=tcp::2323-:23" runqemu evb-ast2600 obmc-phosphor-image slirp
+  #Qemu並建立連接埠轉發，將虛擬機的網頁、SSH 與 Telnet 服務分別對應至宿主機的 8443、2222 與 2323 埠，以便於本機進行遠端管理與除錯。
 
 ✅ Result
 runqemu - INFO - Running MACHINE=evb-ast2600 bitbake -e  obmc-phosphor-image...
