@@ -1,4 +1,8 @@
 #OpenBMC D-bus 核心功能實作
 
 步驟
-1.
+1.透過SSH 連線到QEMU 模擬器中
+  ssh root@localhost -p 2222
+2.驗證環境是否在OpenBmc裡面
+  cat /etc/os-release
+
