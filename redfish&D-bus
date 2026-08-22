@@ -8,3 +8,11 @@ CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.On
 CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Running
 BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.OSStart
 OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Standby
+
+2.驗證 Redfish
+  curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems/system   | jq '.PowerState'
+⭐️ Result
+ % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+100   2637 100   2637   0      0   3045      0                              0
+"PoweringOn"
