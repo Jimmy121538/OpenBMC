@@ -1,3 +1,4 @@
+#從 D-bus 更改，再由 Redfish 驗證
 1.執行伺服器開機指令
   obmcutil poweron
   查看系統狀態
@@ -16,3 +17,5 @@ OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.
                                  Dload  Upload  Total   Spent   Left   Speed
 100   2637 100   2637   0      0   3045      0                              0
 "PoweringOn"
+
+#從 D-bus 更改，再由 Redfish 驗證
