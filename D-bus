@@ -18,8 +18,86 @@ OPENBMC_TARGET_MACHINE="evb-ast2600"
 EXTENDED_VERSION="3.1.0-dev-947-g80e2959a0b"
 
 3.列出所有 D-Bus 服務
+✅ Result
   busctl list
-
+NAME                                                   PID PROCESS         USER             CONNECTION UNIT                                             SESSION DESCRIPTION
+:1.0                                                   200 systemd-network systemd-network  :1.0       systemd-networkd.service                         -       -          
+:1.1                                                   174 systemd-timesyn systemd-timesync :1.1       systemd-timesyncd.service                        -       -          
+:1.10                                                  248 phosphor-certif root             :1.10      phosphor-certificate-manager@bmcweb.service      -       -          
+:1.11                                                  241 bmcweb          root             :1.11      bmcweb.service                                   -       -          
+:1.12                                                  249 phosphor-certif root             :1.12      phosphor-certificate-manager@nslcd.service       -       -          
+:1.13                                                  247 phosphor-certif root             :1.13      phosphor-certificate-manager@authority.service   -       -          
+:1.14                                                  250 health-monitor  root             :1.14      phosphor-health-monitor.service                  -       -          
+:1.15                                                  267 mapperx         root             :1.15      xyz.openbmc_project.ObjectMapper.service         -       -          
+:1.16                                                  263 phosphor-log-ma root             :1.16      xyz.openbmc_project.Logging.service              -       -          
+:1.17                                                  261 phosphor-invent root             :1.17      xyz.openbmc_project.Inventory.Manager.service    -       -          
+:1.18                                                  265 phosphor-networ root             :1.18      xyz.openbmc_project.Network.service              -       -          
+:1.19                                                  270 phosphor-settin root             :1.19      xyz.openbmc_project.Settings.service             -       -          
+:1.2                                                   173 systemd-resolve systemd-resolve  :1.2       systemd-resolved.service                         -       -          
+:1.20                                                  274 phosphor-downlo root             :1.20      xyz.openbmc_project.Software.Download.service    -       -          
+:1.21                                                  280 phosphor-rsyslo root             :1.21      xyz.openbmc_project.Syslog.Config.service        -       -          
+:1.22                                                  282 telemetry       root             :1.22      xyz.openbmc_project.Telemetry.service            -       -          
+:1.23                                                  298 phosphor-dump-m root             :1.23      xyz.openbmc_project.Dump.Manager.service         -       -          
+:1.24                                                  299 phosphor-softwa root             :1.24      xyz.openbmc_project.Software.Manager.service     -       -          
+:1.25                                                  301 phosphor-user-m root             :1.25      xyz.openbmc_project.User.Manager.service         -       -          
+:1.26                                                  300 phosphor-chassi root             :1.26      xyz.openbmc_project.State.Chassis@0.service      -       -          
+:1.27                                                  240 avahi-daemon    avahi            :1.27      avahi-daemon.service                             -       -          
+:1.28                                                  321 phosphor-system root             :1.28      phosphor-systemd-target-monitor.service          -       -          
+:1.29                                                  322 sensor-monitor  root             :1.29      sensor-monitor.service                           -       -          
+:1.33                                                  329 mapper          root             :1.33      mapper-wait@-org-openbmc-control-power0.service  -       -          
+:1.37                                                  328 phosphor-ledman root             :1.37      xyz.openbmc_project.LED.GroupManager.service     -       -          
+:1.38                                                  328 phosphor-ledman root             :1.38      xyz.openbmc_project.LED.GroupManager.service     -       -          
+:1.4                                                   211 dbus-broker-lau root             :1.4       dbus-broker.service                              -       -          
+:1.45                                                  339 phosphor-bmc-st root             :1.45      xyz.openbmc_project.State.BMC.service            -       -          
+:1.46                                                  327 systemd-hostnam root             :1.46      systemd-hostnamed.service                        -       -          
+:1.47                                                  352 phosphor-time-m root             :1.47      xyz.openbmc_project.Time.Manager.service         -       -          
+:1.48                                                  351 ipmid           root             :1.48      phosphor-ipmi-host.service                       -       -          
+:1.49                                                  361 systemd-timedat root             :1.49      systemd-timedated.service                        -       -          
+:1.5                                                     1 systemd         root             :1.5       init.scope                                       -       -          
+:1.50                                                  351 ipmid           root             :1.50      phosphor-ipmi-host.service                       -       -          
+:1.51                                                  363 phosphor-host-s root             :1.51      xyz.openbmc_project.State.Host@0.service         -       -          
+:1.52                                                  362 netipmid        root             :1.52      phosphor-ipmi-net@eth0.service                   -       -          
+:1.53                                                  368 busctl          root             :1.53      dropbear@0-1-10.0.2.15:22-10.0.2.2:34050.service -       -          
+:1.6                                                   244 mctpd           root             :1.6       mctpd.service                                    -       -          
+:1.7                                                   245 phosphor-dump-m root             :1.7       obmc-dump-monitor.service                        -       -          
+:1.8                                                   255 phosphor-srvcfg root             :1.8       srvcfg-manager.service                           -       -          
+:1.9                                                   252 phosphor-ledcon root             :1.9       phosphor-ledcontroller.service                   -       -          
+au.com.codeconstruct.MCTP1                             244 mctpd           root             :1.6       mctpd.service                                    -       -          
+org.freedesktop.Avahi                                  240 avahi-daemon    avahi            :1.27      avahi-daemon.service                             -       -          
+org.freedesktop.DBus                                     1 systemd         root             -          init.scope                                       -       -          
+org.freedesktop.hostname1                              327 systemd-hostnam root             :1.46      systemd-hostnamed.service                        -       -          
+org.freedesktop.network1                               200 systemd-network systemd-network  :1.0       systemd-networkd.service                         -       -          
+org.freedesktop.resolve1                               173 systemd-resolve systemd-resolve  :1.2       systemd-resolved.service                         -       -          
+org.freedesktop.systemd1                                 1 systemd         root             :1.5       init.scope                                       -       -          
+org.freedesktop.timedate1                              361 systemd-timedat root             :1.49      systemd-timedated.service                        -       -          
+org.freedesktop.timesync1                              174 systemd-timesyn systemd-timesync :1.1       systemd-timesyncd.service                        -       -          
+xyz.openbmc_project.Certs.Manager.Authority.Truststore 247 phosphor-certif root             :1.13      phosphor-certificate-manager@authority.service   -       -          
+xyz.openbmc_project.Certs.Manager.Client.Ldap          249 phosphor-certif root             :1.12      phosphor-certificate-manager@nslcd.service       -       -          
+xyz.openbmc_project.Certs.Manager.Server.Https         248 phosphor-certif root             :1.10      phosphor-certificate-manager@bmcweb.service      -       -          
+xyz.openbmc_project.Control.Host                       351 ipmid           root             :1.50      phosphor-ipmi-host.service                       -       -          
+xyz.openbmc_project.Control.Service.Manager            255 phosphor-srvcfg root             :1.8       srvcfg-manager.service                           -       -          
+xyz.openbmc_project.Dump.Manager                       298 phosphor-dump-m root             :1.23      xyz.openbmc_project.Dump.Manager.service         -       -          
+xyz.openbmc_project.HealthMon                          250 health-monitor  root             :1.14      phosphor-health-monitor.service                  -       -          
+xyz.openbmc_project.Inventory.Manager                  261 phosphor-invent root             :1.17      xyz.openbmc_project.Inventory.Manager.service    -       -          
+xyz.openbmc_project.Ipmi.Channel.eth0                  362 netipmid        root             :1.52      phosphor-ipmi-net@eth0.service                   -       -          
+xyz.openbmc_project.Ipmi.Host                          351 ipmid           root             :1.48      phosphor-ipmi-host.service                       -       -          
+xyz.openbmc_project.LED.Controller                     252 phosphor-ledcon root             :1.9       phosphor-ledcontroller.service                   -       -          
+xyz.openbmc_project.Logging                            263 phosphor-log-ma root             :1.16      xyz.openbmc_project.Logging.service              -       -          
+xyz.openbmc_project.Network                            265 phosphor-networ root             :1.18      xyz.openbmc_project.Network.service              -       -          
+xyz.openbmc_project.ObjectMapper                       267 mapperx         root             :1.15      xyz.openbmc_project.ObjectMapper.service         -       -          
+xyz.openbmc_project.Settings                           270 phosphor-settin root             :1.19      xyz.openbmc_project.Settings.service             -       -          
+xyz.openbmc_project.Software.Download                  274 phosphor-downlo root             :1.20      xyz.openbmc_project.Software.Download.service    -       -          
+xyz.openbmc_project.Software.Manager                   299 phosphor-softwa root             :1.24      xyz.openbmc_project.Software.Manager.service     -       -          
+xyz.openbmc_project.State.BMC                          339 phosphor-bmc-st root             :1.45      xyz.openbmc_project.State.BMC.service            -       -          
+xyz.openbmc_project.State.Chassis                      300 phosphor-chassi root             :1.26      xyz.openbmc_project.State.Chassis@0.service      -       -          
+xyz.openbmc_project.State.Chassis0                     300 phosphor-chassi root             :1.26      xyz.openbmc_project.State.Chassis@0.service      -       -          
+xyz.openbmc_project.State.Host                         363 phosphor-host-s root             :1.51      xyz.openbmc_project.State.Host@0.service         -       -          
+xyz.openbmc_project.State.Host0                        363 phosphor-host-s root             :1.51      xyz.openbmc_project.State.Host@0.service         -       -          
+xyz.openbmc_project.Syslog.Config                      280 phosphor-rsyslo root             :1.21      xyz.openbmc_project.Syslog.Config.service        -       -          
+xyz.openbmc_project.Telemetry                          282 telemetry       root             :1.22      xyz.openbmc_project.Telemetry.service            -       -          
+xyz.openbmc_project.Time.Manager                       352 phosphor-time-m root             :1.47      xyz.openbmc_project.Time.Manager.service         -       -          
+xyz.openbmc_project.User.Manager                       301 phosphor-user-m root             :1.25      xyz.openbmc_project.User.Manager.service         -       -          
+xyz.openbmc_project.bmcweb                             241 bmcweb          root             :1.11      bmcweb.service                                   -       -  
 4.檢查特定的 D-Bus 服務狀態
   busctl status xyz.openbmc_project.State.Host
 
