@@ -5,7 +5,7 @@
   ssh root@localhost -p 2222
 2.驗證環境是否在OpenBmc裡面
   cat /etc/os-release
-✅ Result
+⭐️ Result
 ID=openbmc-phosphor 
 NAME="Phosphor OpenBMC (Phosphor OpenBMC Project Reference Distro)" 
 VERSION="3.1.0-dev"
@@ -18,7 +18,7 @@ OPENBMC_TARGET_MACHINE="evb-ast2600"
 EXTENDED_VERSION="3.1.0-dev-947-g80e2959a0b"
 
 3.列出所有 D-Bus 服務
-✅ Result
+⭐️ Result
   busctl list
 NAME                                                   PID PROCESS         USER             CONNECTION UNIT                                             SESSION DESCRIPTION
 :1.0                                                   200 systemd-network systemd-network  :1.0       systemd-networkd.service                         -       -          
@@ -106,12 +106,12 @@ xyz.openbmc_project.bmcweb                             241 bmcweb          root 
 
 6.檢視指定物件底下的所有介面與屬性
   busctl introspect xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0
-✅ Result
+⭐️ Result
 s "xyz.openbmc_project.State.BMC.BMCState.Quiesced"
 
 7.讀取 D-Bus 物件的特定屬性數值
   busctl get-property xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host RequestedHostTransition
-✅ Result
+⭐️ Result
 s "xyz.openbmc_project.State.Host.Transition.Off"
 
 8.透過 D-Bus 發送方法呼叫（例如執行開機指令）
@@ -120,7 +120,7 @@ xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host SetHostTransition
 
 9.檢視日誌服務樹狀圖
   busctl tree xyz.openbmc_project.Logging
-✅ Result
+⭐️ Result
 `- /xyz
   `- /xyz/openbmc_project
     `- /xyz/openbmc_project/logging
@@ -165,7 +165,7 @@ xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host SetHostTransition
 10.執行單筆刪除指令
   busctl call xyz.openbmc_project.Logging /xyz/openbmc_project/logging/entry/10 xyz.openbmc_project.Object.Delete Delete
   再輸入 busctl tree xyz.openbmc_project.Logging 確認是否刪除
-✅ Result
+⭐️ Result
 `- /xyz
   `- /xyz/openbmc_project
     `- /xyz/openbmc_project/logging
@@ -208,7 +208,7 @@ xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host SetHostTransition
 
 11.監聽 HOST service 的事件
    busctl monitor xyz.openbmc_project.State.Host
-✅ Result
+⭐️ Result
 Monitoring bus message stream.
 > Type=signal  Endian=l  Flags=1  Version=1 Cookie=11393  Timestamp="Fri 2026-08-21 10:30:26.128412 UTC"
   Sender=:1.12  Path=/xyz/openbmc_project/metric/bmc/cpu/total  Interface=org.freedesktop.DBus.Properties  Member=PropertiesChanged
@@ -229,7 +229,7 @@ Monitoring bus message stream.
 
 12.使用 obmcutil 小工具 查看狀態服務的狀態
    obmcutil state
-✅ Result
+⭐️ Result
 CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.Quiesced
 CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.Off
 CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Off
