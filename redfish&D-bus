@@ -2,3 +2,9 @@
   obmcutil poweron
   查看系統狀態
   obmcutil state 
+⭐️ Result
+CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.Ready
+CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.On
+CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Running
+BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.OSStart
+OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Standby
