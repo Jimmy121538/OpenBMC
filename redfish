@@ -1,77 +1,198 @@
 #OpenBMC Redfish 透過指令 curl 實作
 
 1.設定連接埠
-  curl -k https://127.0.0.1:8443/redfish/v1       #確認 BMC 的 Redfish 伺服器運作完全正常
+  curl -k https://127.0.0.1:8443/redfish/v1       #確認 BMC 的 Redfish 伺服器運作完全正常。
+⭐️ Result
 {
   "@odata.id": "/redfish/v1",
   "@odata.type": "#ServiceRoot.v1_15_0.ServiceRoot",
-  "AccountService": {
+  "AccountService": {                    #管理使用者帳號與權限。
     "@odata.id": "/redfish/v1/AccountService"
   },
-  "Cables": {
-    "@odata.id": "/redfish/v1/Cables"
-  },
-  "CertificateService": {
-    "@odata.id": "/redfish/v1/CertificateService"
-  },
-  "Chassis": {
+ ---
+  "Chassis": {                           #管理機箱硬體(機箱外殼、風扇、溫度感測器等)。
     "@odata.id": "/redfish/v1/Chassis"
   },
-  "EventService": {
-    "@odata.id": "/redfish/v1/EventService"
-  },
-  "Fabrics": {
-    "@odata.id": "/redfish/v1/Fabrics"
-  },
-  "Id": "RootService",
-  "JsonSchemas": {
-    "@odata.id": "/redfish/v1/JsonSchemas"
-  },
-  "Links": {
-    "ManagerProvidingService": {
-      "@odata.id": "/redfish/v1/Managers/bmc"
-    },
-    "Sessions": {
-      "@odata.id": "/redfish/v1/SessionService/Sessions"
-    }
-  },
-  "Managers": {
-    "@odata.id": "/redfish/v1/Managers"
-  },
-  "Name": "Root Service",
-  "ProtocolFeaturesSupported": {
-    "DeepOperations": {
-      "DeepPATCH": false,
-      "DeepPOST": false
-    },
-    "ExcerptQuery": false,
-    "ExpandQuery": {
-      "ExpandAll": false,
-      "Levels": false,
-      "Links": false,
-      "NoLinks": false
-    },
-    "FilterQuery": false,
-    "OnlyMemberQuery": true,
-    "SelectQuery": true
-  },
-  "RedfishVersion": "1.17.0",
-  "Registries": {
-    "@odata.id": "/redfish/v1/Registries"
-  },
-  "SessionService": {
-    "@odata.id": "/redfish/v1/SessionService"
-  },
-  "Systems": {
+ ---
+  "Systems": {                           #管理與查看伺服器主機(CPU、開機狀態、電源開關等)。
     "@odata.id": "/redfish/v1/Systems"
   },
-  "Tasks": {
-    "@odata.id": "/redfish/v1/TaskService"
-  },
-  "TelemetryService": {
-    "@odata.id": "/redfish/v1/TelemetryService"
-  },
-  "UUID": "597f52ff-7ec7-4bba-81b9-18af66705220",
-  "UpdateService": {
+ ---
+  "UUID": "597f52ff-7ec7-4bba-81b9-18af66705220",  
+  "UpdateService": {                     #進行韌體更新(Fru / 韌體刷寫)。
     "@odata.id": "/redfish/v1/UpdateService"
   }
+
+2.curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems  #-k忽略 SSL 憑證驗證 -u提供帳號密碼進行基本驗證。
+⭐️ Result
+{
+  "@odata.id": "/redfish/v1/Systems",
+  "@odata.type": "#ComputerSystemCollection.ComputerSystemCollection",
+  "Members": [
+    {
+      "@odata.id": "/redfish/v1/Systems/system"
+    }
+  ],
+  "Members@odata.count": 1,    #這台 BMC 目前管理著 1 台伺服器主機。
+  "Name": "Computer System Collection"
+
+3.查詢單一系統狀態
+  curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems/systemm  #向 BMC 查詢這台編號為 system 的伺服器主機的詳細狀態與硬體資訊。
+⭐️ Result
+{
+  "@odata.id": "/redfish/v1/Systems/system",
+  "@odata.type": "#ComputerSystem.v1_22_0.ComputerSystem",
+  "Actions": {
+    "#ComputerSystem.Reset": {         #用來對主機發送開機、關機或重啟指令的 API 入口 (target)
+      "@Redfish.ActionInfo": "/redfish/v1/Systems/system/ResetActionInfo",
+      "target": "/redfish/v1/Systems/system/Actions/ComputerSystem.Reset"
+    }
+  },
+  "Bios": {
+    "@odata.id": "/redfish/v1/Systems/system/Bios"
+  },
+  "Boot": {
+    "AutomaticRetryAttempts": 3,
+    "AutomaticRetryConfig": "RetryAttempts",
+    "AutomaticRetryConfig@Redfish.AllowableValues": [
+      "Disabled",
+      "RetryAttempts"
+    ],
+    "BootSourceOverrideEnabled": "Disabled",
+    "BootSourceOverrideMode": "UEFI",
+    "BootSourceOverrideMode@Redfish.AllowableValues": [
+      "Legacy",
+      "UEFI"
+    ],
+    "BootSourceOverrideTarget": "None",
+    "BootSourceOverrideTarget@Redfish.AllowableValues": [
+      "None",
+      "Pxe",
+      "Hdd",
+      "Cd",
+      "Diags",
+      "BiosSetup",
+      "Usb"
+    ],
+    "RemainingAutomaticRetryAttempts": 3,
+    "StopBootOnFault": "Never",
+    "TrustedModuleRequiredToBoot": "Disabled"
+  },
+  "BootProgress": {
+    "LastState": "None",
+    "LastStateTime": "1970-01-01T00:00:00.000000+00:00"
+  },
+  "Description": "Computer System",
+  "FabricAdapters": {
+    "@odata.id": "/redfish/v1/Systems/system/FabricAdapters"
+  },
+  "GraphicalConsole": {
+    "ConnectTypesSupported": [
+      "KVMIP"
+    ],
+    "MaxConcurrentSessions": 4,
+    "ServiceEnabled": true
+  },
+  "HostWatchdogTimer": {
+    "FunctionEnabled": false,
+    "Status": {
+      "State": "Enabled"
+    },
+    "TimeoutAction": "ResetSystem"
+  },
+  "Id": "system",
+  "LastResetTime": "1970-01-01T00:00:00+00:00",
+  "Links": {
+    "ManagedBy": [
+      {
+        "@odata.id": "/redfish/v1/Managers/bmc"
+      }
+    ]
+  },
+  "LogServices": {
+    "@odata.id": "/redfish/v1/Systems/system/LogServices"
+  },
+  "Memory": {
+    "@odata.id": "/redfish/v1/Systems/system/Memory"
+  },
+  "MemorySummary": {
+    "TotalSystemMemoryGiB": 0.0
+  },
+  "Name": "system",
+  "PCIeDevices": [],
+  "PCIeDevices@odata.count": 0,
+  "PowerRestorePolicy": "AlwaysOff",
+  "PowerState": "Off",   #主機目前處於關機狀態
+  "ProcessorSummary": {
+    "Count": 0
+  },
+  "Processors": {
+    "@odata.id": "/redfish/v1/Systems/system/Processors"
+  },
+  "SerialConsole": {
+    "IPMI": {
+      "ServiceEnabled": true
+    },
+    "MaxConcurrentSessions": 15,
+    "SSH": {
+      "HotKeySequenceDisplay": "Press ~. to exit console",
+      "Port": 2200,
+      "ServiceEnabled": true
+    }
+  },
+  "Status": {
+    "Health": "OK",
+    "State": "Disabled"
+  },
+  "Storage": {
+    "@odata.id": "/redfish/v1/Systems/system/Storage"
+  },
+  "SystemType": "Physical"
+
+4.查詢日誌服務清單
+  https://127.0.0.1:8443/redfish/v1/Systems/system/LogServices
+⭐️ Result
+{
+  "@odata.id": "/redfish/v1/Systems/system/LogServices",
+  "@odata.type": "#LogServiceCollection.LogServiceCollection",
+  "Description": "Collection of LogServices for this Computer System",
+  "Members": [
+    {
+      "@odata.id": "/redfish/v1/Systems/system/LogServices/EventLog"
+    }
+  ],
+  "Members@odata.count": 1,            #目前提供了一個最核心的日誌服務：EventLog。
+  "Name": "System Log Services Collection"
+
+5.具體的事件日誌明細
+  https://127.0.0.1:8443/redfish/v1/Systems/system/LogServices/EventLog/Entries
+⭐️ Result
+{
+  "@odata.id": "/redfish/v1/Systems/system/LogServices/EventLog/Entries",
+  "@odata.type": "#LogEntryCollection.LogEntryCollection",
+  "Description": "Collection of System Event Log Entries",
+  "Members": [],
+  "Members@odata.count": 0,         # 0 表示目前系統裡面「沒有任何事件日誌」。
+  "Name": "System Event Log Entries"
+
+6.透過 Redfish API 「發送指令將伺服器開機」
+  curl -k -u root:0penBmc -X POST \         #-X POST 代表要「執行一個動作/發送指令」。
+  -H "Content-Type: application/json" \    #-H 代表告訴伺服器：「我接下來傳過去給你的資料格式是 JSON」。
+  -d '{"ResetType": "On"}' \               #-d 代表傳遞一個 JSON 物件，指定 ResetType 為 On。
+  https://127.0.0.1:8443/redfish/v1/Systems/system/Actions/ComputerSystem.Reset  
+
+7.透過 Redfish API 「發送指令將伺服器關機」
+  curl -k -u root:0penBmc -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"ResetType": "GracefulShutdown"}' \    # Graceful Shutdown 正常關機
+  https://127.0.0.1:8443/redfish/v1/Systems/system/Actions/ComputerSystem.Reset
+
+8.查詢伺服器目前電源狀態
+  curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems/system \
+  | jq '.PowerState'
+⭐️ Result
+ | jq '.PowerState'
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+100   2630 100   2630   0      0   2238      0   00:01   00:01           2247
+"Off"
