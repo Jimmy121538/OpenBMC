@@ -21,85 +21,39 @@ EXTENDED_VERSION="3.1.0-dev-947-g80e2959a0b"
 ⭐️ Result
   busctl list 
 NAME                                                   PID PROCESS         USER             CONNECTION UNIT                                             SESSION DESCRIPTION
-:1.0                                                   200 systemd-network systemd-network  :1.0       systemd-networkd.service                         -       -          
-:1.1                                                   174 systemd-timesyn systemd-timesync :1.1       systemd-timesyncd.service                        -       -          
-:1.10                                                  248 phosphor-certif root             :1.10      phosphor-certificate-manager@bmcweb.service      -       -          
-:1.11                                                  241 bmcweb          root             :1.11      bmcweb.service                                   -       -          
-:1.12                                                  249 phosphor-certif root             :1.12      phosphor-certificate-manager@nslcd.service       -       -          
-:1.13                                                  247 phosphor-certif root             :1.13      phosphor-certificate-manager@authority.service   -       -          
-:1.14                                                  250 health-monitor  root             :1.14      phosphor-health-monitor.service                  -       -          
-:1.15                                                  267 mapperx         root             :1.15      xyz.openbmc_project.ObjectMapper.service         -       -          
-:1.16                                                  263 phosphor-log-ma root             :1.16      xyz.openbmc_project.Logging.service              -       -          
-:1.17                                                  261 phosphor-invent root             :1.17      xyz.openbmc_project.Inventory.Manager.service    -       -          
-:1.18                                                  265 phosphor-networ root             :1.18      xyz.openbmc_project.Network.service              -       -          
-:1.19                                                  270 phosphor-settin root             :1.19      xyz.openbmc_project.Settings.service             -       -          
-:1.2                                                   173 systemd-resolve systemd-resolve  :1.2       systemd-resolved.service                         -       -          
-:1.20                                                  274 phosphor-downlo root             :1.20      xyz.openbmc_project.Software.Download.service    -       -          
-:1.21                                                  280 phosphor-rsyslo root             :1.21      xyz.openbmc_project.Syslog.Config.service        -       -          
-:1.22                                                  282 telemetry       root             :1.22      xyz.openbmc_project.Telemetry.service            -       -          
-:1.23                                                  298 phosphor-dump-m root             :1.23      xyz.openbmc_project.Dump.Manager.service         -       -          
-:1.24                                                  299 phosphor-softwa root             :1.24      xyz.openbmc_project.Software.Manager.service     -       -          
-:1.25                                                  301 phosphor-user-m root             :1.25      xyz.openbmc_project.User.Manager.service         -       -          
-:1.26                                                  300 phosphor-chassi root             :1.26      xyz.openbmc_project.State.Chassis@0.service      -       -          
-:1.27                                                  240 avahi-daemon    avahi            :1.27      avahi-daemon.service                             -       -          
-:1.28                                                  321 phosphor-system root             :1.28      phosphor-systemd-target-monitor.service          -       -          
-:1.29                                                  322 sensor-monitor  root             :1.29      sensor-monitor.service                           -       -          
-:1.33                                                  329 mapper          root             :1.33      mapper-wait@-org-openbmc-control-power0.service  -       -          
-:1.37                                                  328 phosphor-ledman root             :1.37      xyz.openbmc_project.LED.GroupManager.service     -       -          
-:1.38                                                  328 phosphor-ledman root             :1.38      xyz.openbmc_project.LED.GroupManager.service     -       -          
-:1.4                                                   211 dbus-broker-lau root             :1.4       dbus-broker.service                              -       -          
-:1.45                                                  339 phosphor-bmc-st root             :1.45      xyz.openbmc_project.State.BMC.service            -       -          
-:1.46                                                  327 systemd-hostnam root             :1.46      systemd-hostnamed.service                        -       -          
-:1.47                                                  352 phosphor-time-m root             :1.47      xyz.openbmc_project.Time.Manager.service         -       -          
-:1.48                                                  351 ipmid           root             :1.48      phosphor-ipmi-host.service                       -       -          
-:1.49                                                  361 systemd-timedat root             :1.49      systemd-timedated.service                        -       -          
-:1.5                                                     1 systemd         root             :1.5       init.scope                                       -       -          
-:1.50                                                  351 ipmid           root             :1.50      phosphor-ipmi-host.service                       -       -          
-:1.51                                                  363 phosphor-host-s root             :1.51      xyz.openbmc_project.State.Host@0.service         -       -          
-:1.52                                                  362 netipmid        root             :1.52      phosphor-ipmi-net@eth0.service                   -       -          
-:1.53                                                  368 busctl          root             :1.53      dropbear@0-1-10.0.2.15:22-10.0.2.2:34050.service -       -          
-:1.6                                                   244 mctpd           root             :1.6       mctpd.service                                    -       -          
-:1.7                                                   245 phosphor-dump-m root             :1.7       obmc-dump-monitor.service                        -       -          
-:1.8                                                   255 phosphor-srvcfg root             :1.8       srvcfg-manager.service                           -       -          
-:1.9                                                   252 phosphor-ledcon root             :1.9       phosphor-ledcontroller.service                   -       -          
-au.com.codeconstruct.MCTP1                             244 mctpd           root             :1.6       mctpd.service                                    -       -          
-org.freedesktop.Avahi                                  240 avahi-daemon    avahi            :1.27      avahi-daemon.service                             -       -          
-org.freedesktop.DBus                                     1 systemd         root             -          init.scope                                       -       -          
-org.freedesktop.hostname1                              327 systemd-hostnam root             :1.46      systemd-hostnamed.service                        -       -          
-org.freedesktop.network1                               200 systemd-network systemd-network  :1.0       systemd-networkd.service                         -       -          
-org.freedesktop.resolve1                               173 systemd-resolve systemd-resolve  :1.2       systemd-resolved.service                         -       -          
-org.freedesktop.systemd1                                 1 systemd         root             :1.5       init.scope                                       -       -          
-org.freedesktop.timedate1                              361 systemd-timedat root             :1.49      systemd-timedated.service                        -       -          
-org.freedesktop.timesync1                              174 systemd-timesyn systemd-timesync :1.1       systemd-timesyncd.service                        -       -          
-xyz.openbmc_project.Certs.Manager.Authority.Truststore 247 phosphor-certif root             :1.13      phosphor-certificate-manager@authority.service   -       -          
-xyz.openbmc_project.Certs.Manager.Client.Ldap          249 phosphor-certif root             :1.12      phosphor-certificate-manager@nslcd.service       -       -          
-xyz.openbmc_project.Certs.Manager.Server.Https         248 phosphor-certif root             :1.10      phosphor-certificate-manager@bmcweb.service      -       -          
-xyz.openbmc_project.Control.Host                       351 ipmid           root             :1.50      phosphor-ipmi-host.service                       -       -          
-xyz.openbmc_project.Control.Service.Manager            255 phosphor-srvcfg root             :1.8       srvcfg-manager.service                           -       -          
-xyz.openbmc_project.Dump.Manager                       298 phosphor-dump-m root             :1.23      xyz.openbmc_project.Dump.Manager.service         -       -          
-xyz.openbmc_project.HealthMon                          250 health-monitor  root             :1.14      phosphor-health-monitor.service                  -       -          
-xyz.openbmc_project.Inventory.Manager                  261 phosphor-invent root             :1.17      xyz.openbmc_project.Inventory.Manager.service    -       -          
-xyz.openbmc_project.Ipmi.Channel.eth0                  362 netipmid        root             :1.52      phosphor-ipmi-net@eth0.service                   -       -          
-xyz.openbmc_project.Ipmi.Host                          351 ipmid           root             :1.48      phosphor-ipmi-host.service                       -       -          
-xyz.openbmc_project.LED.Controller                     252 phosphor-ledcon root             :1.9       phosphor-ledcontroller.service                   -       -          
-xyz.openbmc_project.Logging                            263 phosphor-log-ma root             :1.16      xyz.openbmc_project.Logging.service              -       -          
-xyz.openbmc_project.Network                            265 phosphor-networ root             :1.18      xyz.openbmc_project.Network.service              -       -          
-xyz.openbmc_project.ObjectMapper                       267 mapperx         root             :1.15      xyz.openbmc_project.ObjectMapper.service         -       -          
-xyz.openbmc_project.Settings                           270 phosphor-settin root             :1.19      xyz.openbmc_project.Settings.service             -       -          
-xyz.openbmc_project.Software.Download                  274 phosphor-downlo root             :1.20      xyz.openbmc_project.Software.Download.service    -       -          
-xyz.openbmc_project.Software.Manager                   299 phosphor-softwa root             :1.24      xyz.openbmc_project.Software.Manager.service     -       -          
-xyz.openbmc_project.State.BMC                          339 phosphor-bmc-st root             :1.45      xyz.openbmc_project.State.BMC.service            -       -          
-xyz.openbmc_project.State.Chassis                      300 phosphor-chassi root             :1.26      xyz.openbmc_project.State.Chassis@0.service      -       -          
-xyz.openbmc_project.State.Chassis0                     300 phosphor-chassi root             :1.26      xyz.openbmc_project.State.Chassis@0.service      -       -          
-xyz.openbmc_project.State.Host                         363 phosphor-host-s root             :1.51      xyz.openbmc_project.State.Host@0.service         -       -          
-xyz.openbmc_project.State.Host0                        363 phosphor-host-s root             :1.51      xyz.openbmc_project.State.Host@0.service         -       -          
-xyz.openbmc_project.Syslog.Config                      280 phosphor-rsyslo root             :1.21      xyz.openbmc_project.Syslog.Config.service        -       -          
-xyz.openbmc_project.Telemetry                          282 telemetry       root             :1.22      xyz.openbmc_project.Telemetry.service            -       -          
-xyz.openbmc_project.Time.Manager                       352 phosphor-time-m root             :1.47      xyz.openbmc_project.Time.Manager.service         -       -          
-xyz.openbmc_project.User.Manager                       301 phosphor-user-m root             :1.25      xyz.openbmc_project.User.Manager.service         -       -          
-xyz.openbmc_project.bmcweb                             241 bmcweb          root             :1.11      bmcweb.service                                   -       -  
+:1.0                                                   200 systemd-network systemd-network  :1.0       systemd-networkd.service                         -     - 
+---
+xyz.openbmc_project.Certs.Manager.Authority.Truststore 247 phosphor-certif root             :1.13      phosphor-certificate-manager@authority.service   -      -          
+                       
+4.檢視指定物件底下的所有介面與屬性
+  busctl introspect xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0
+⭐️ Result
+NAME                                             TYPE      SIGNATURE RESULT/VALUE                                                                                  FLAGS                
+org.freedesktop.DBus.Introspectable              interface -         -                                                                                             -                    
+.Introspect                                      method    -         s                                                                                             -                    
+org.freedesktop.DBus.Peer                        interface -         -                                                                                             -                    
+.GetMachineId                                    method    -         s                                                                                             -                    
+.Ping                                            method    -         -                                                                                             -                    
+org.freedesktop.DBus.Properties                  interface -         -                                                                                             -                    
+.Get                                             method    ss        v                                                                                             -                    
+.GetAll                                          method    s         a{sv}                                                                                         -                    
+.Set                                             method    ssv       -                                                                                             -                    
+.PropertiesChanged                               signal    sa{sv}as  -                                                                                             -                    
+xyz.openbmc_project.Control.Boot.RebootAttempts  interface -         -                                                                                             -                    
+.AttemptsLeft                                    property  u         3                                                                                             emits-change writable
+.RetryAttempts                                   property  u         3                                                                                             emits-change writable
+xyz.openbmc_project.State.Boot.Progress          interface -         -                                                                                             -                    
+.BootProgress                                    property  s         "xyz.openbmc_project.State.Boot.Progress.ProgressStages.Unspecified"                          emits-change writable
+.BootProgressLastUpdate                          property  t         0                                                                                             emits-change writable
+xyz.openbmc_project.State.Host                   interface -         -                                                                                             -                    
+.AllowedHostTransitions                          property  as        5 "xyz.openbmc_project.State.Host.Transition.Off" "xyz.openbmc_project.State.Host.Transiti... const
+.CurrentHostState                                property  s         "xyz.openbmc_project.State.Host.HostState.Off"                                                emits-change writable
+.RequestedHostTransition                         property  s         "xyz.openbmc_project.State.Host.Transition.Off"                                               emits-change writable
+.RestartCause                                    property  s         "xyz.openbmc_project.State.Host.RestartCause.Unknown"                                         emits-change writable
+xyz.openbmc_project.State.OperatingSystem.Status interface -         -                                                                                             -                    
+.OperatingSystemState                            property  s         "xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive"                          emits-change writable
 
-4.檢查特定的 D-Bus 服務狀態
+5.檢查特定的 D-Bus 服務狀態
 ⭐️ Result
   busctl status xyz.openbmc_project.State.Host #主機狀態管理服務
 PID=363    #Process ID，進程識別碼，執行中的程式的「身分證字號」
@@ -162,26 +116,7 @@ BoundingCapabilities=cap_chown cap_dac_override cap_dac_read_search
         cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon 
         cap_bpf cap_checkpoint_restore
 
-5.查看 BMC 狀態 
-  busctl get-property xyz.openbmc_project.State.BMC /xyz/openbmc_project/state/bmc0 xyz.openbmc_project.State.BMC CurrentBMCState
-⭐️ Result
-s "xyz.openbmc_project.State.BMC.BMCState.NotReady"
-
-6.檢視指定物件底下的所有介面與屬性
-  busctl introspect xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0
-⭐️ Result
-s "xyz.openbmc_project.State.BMC.BMCState.Quiesced"
-
-7.讀取 D-Bus 物件的特定屬性數值
-  busctl get-property xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host RequestedHostTransition
-⭐️ Result
-s "xyz.openbmc_project.State.Host.Transition.Off"
-
-8.透過 D-Bus 發送方法呼叫（例如執行開機指令）
-busctl call xyz.openbmc_project.State.Host /
-xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host SetHostTransition s xyz.openbmc_project.State.Host.Transition.On
-
-9.檢視日誌服務樹狀圖
+6.檢視日誌服務樹狀圖
   busctl tree xyz.openbmc_project.Logging
 ⭐️ Result
 `- /xyz
@@ -225,7 +160,7 @@ xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host SetHostTransition
       `- /xyz/openbmc_project/logging/internal
         `- /xyz/openbmc_project/logging/internal/manager
 
-10.執行單筆刪除指令
+7.執行單筆刪除指令
   busctl call xyz.openbmc_project.Logging /xyz/openbmc_project/logging/entry/10 xyz.openbmc_project.Object.Delete Delete
   再輸入 busctl tree xyz.openbmc_project.Logging 確認是否刪除
 ⭐️ Result
@@ -269,7 +204,7 @@ xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host SetHostTransition
       `- /xyz/openbmc_project/logging/internal
         `- /xyz/openbmc_project/logging/internal/manager
 
-11.監聽 HOST service 的事件
+8.監聽 HOST service 的事件
    busctl monitor xyz.openbmc_project.State.Host  #只要有任何程式對這個 Host 服務發送請求、修改屬性、或是狀態發生改變，畫面就會立刻印出即時的訊號與內容。
 ⭐️ Result
 Monitoring bus message stream.
@@ -290,11 +225,47 @@ Monitoring bus message stream.
           };
   };
 
-12.使用 obmcutil 小工具 查看狀態服務的狀態
-   obmcutil state
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+9.查看 BMC 狀態 
+  busctl get-property xyz.openbmc_project.State.BMC /xyz/openbmc_project/state/bmc0 xyz.openbmc_project.State.BMC CurrentBMCState
 ⭐️ Result
-CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.Quiesced
+s "xyz.openbmc_project.State.BMC.BMCState.Quiesced" 
+
+10.執行伺服器開機指令
+  obmcutil poweron
+
+11.使用 obmcutil 小工具 查看狀態服務的狀態
+   obmcutil state  #與 busctl 一層一層手動查詢 D-Bus 屬性不同，obmcutil 是一個整合好的命令列工具，並把目前最重要的幾個系統狀態整理成乾淨易讀的表格印出來。
+⭐️ Result
+CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.Quiesced  #BMC 目前處於保護或靜默狀態。
+CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.Off #伺服器的主電源目前是關閉的。
+CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Off  #主機 CPU 目前也是關機狀態。
+BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.Unspecified 
+OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive #未激活
+
+12.透過日誌指令 journalctl 查看報錯訊息
+  journalctl -p err -b  #只篩選出「錯誤（Error）」等級的訊息
+⭐️ Result
+Aug 21 10:34:11 evb-ast2600 kernel: aspeed-rtc 1e781000.rtc: hctosys: unable to read the hardware clock
+Aug 21 10:34:13 evb-ast2600 kernel: aspeed-edac 1e6e0000.sdram: ECC mode is not configured in u-boot
+---
+Aug 22 07:35:08 evb-ast2600 systemd[1]: Failed to start Phosphor LED Group Management Daemon.
+Aug 22 07:36:52 evb-ast2600 systemd[1]: Failed to start Phosphor LED Group Management Daemon.
+Aug 22 07:38:43 evb-ast2600 systemd[1]: Failed to start Phosphor LED Group Management Daemon.
+Aug 22 07:40:34 evb-ast2600 systemd[1]: Failed to start Phosphor LED Group Management Daemon.
+Aug 22 07:42:25 evb-ast2600 systemd[1]: Failed to start Phosphor LED Group Management Daemon.
+
+13.嘗試把這個會妨礙開機的 LED 服務關掉後看能不能正常操作
+  systemctl stop xyz.openbmc_project.LED.GroupManager.service
+  再輸入 obmcutil state 查看 BMC 有沒有機會脫離 Quiesced 狀態
+⭐️ Result
+CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.NotReady # BMC 狀態已經從原本的 Quiesced (異常保護) 變成 NotReady (未就緒)
 CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.Off
 CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Off
 BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.Unspecified
 OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive
+
+
+
+
+
