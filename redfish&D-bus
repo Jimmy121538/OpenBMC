@@ -1,3 +1,4 @@
 1.執行伺服器開機指令
   obmcutil poweron
-  使用 obmcutil state 查看系統狀態
+  查看系統狀態
+  obmcutil state 
