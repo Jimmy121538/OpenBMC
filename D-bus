@@ -19,7 +19,7 @@ EXTENDED_VERSION="3.1.0-dev-947-g80e2959a0b"
 
 3.列出所有 D-Bus 服務
 ⭐️ Result
-  busctl list
+  busctl list 
 NAME                                                   PID PROCESS         USER             CONNECTION UNIT                                             SESSION DESCRIPTION
 :1.0                                                   200 systemd-network systemd-network  :1.0       systemd-networkd.service                         -       -          
 :1.1                                                   174 systemd-timesyn systemd-timesync :1.1       systemd-timesyncd.service                        -       -          
@@ -98,11 +98,74 @@ xyz.openbmc_project.Telemetry                          282 telemetry       root 
 xyz.openbmc_project.Time.Manager                       352 phosphor-time-m root             :1.47      xyz.openbmc_project.Time.Manager.service         -       -          
 xyz.openbmc_project.User.Manager                       301 phosphor-user-m root             :1.25      xyz.openbmc_project.User.Manager.service         -       -          
 xyz.openbmc_project.bmcweb                             241 bmcweb          root             :1.11      bmcweb.service                                   -       -  
-4.檢查特定的 D-Bus 服務狀態
-  busctl status xyz.openbmc_project.State.Host
 
-5.查看 BMC 狀態
+4.檢查特定的 D-Bus 服務狀態
+⭐️ Result
+  busctl status xyz.openbmc_project.State.Host #主機狀態管理服務
+PID=363    #Process ID，進程識別碼，執行中的程式的「身分證字號」
+PIDFD=yes
+PPID=1
+TTY=n/a
+UID=0      #0 代表最高權限管理者 root
+EUID=0
+SUID=0
+FSUID=0
+GID=0
+EGID=0
+SGID=0
+FSGID=0
+SupplementaryGIDs=0
+Comm=phosphor-host-s
+Exe=/usr/libexec/phosphor-state-manager/phosphor-host-state-manager
+CommandLine=/usr/libexec/phosphor-state-manager/phosphor-host-state-manager --host 0
+CGroup=/system.slice/system-xyz.openbmc_project.State.Host.slice/xyz.openbmc_project.State.Host@0.service
+Unit=xyz.openbmc_project.State.Host@0.service
+Slice=system-xyz.openbmc_project.State.Host.slice
+UserUnit=n/a
+UserSlice=n/a
+Session=n/a
+AuditLoginUID=n/a
+AuditSessionID=n/a
+UniqueName=:1.51
+EffectiveCapabilities=cap_chown cap_dac_override cap_dac_read_search 
+        cap_fowner cap_fsetid cap_kill cap_setgid 
+        cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service 
+        cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock 
+        cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot 
+        cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot 
+        cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config 
+        cap_mknod cap_lease cap_audit_write cap_audit_control 
+        cap_setfcap cap_mac_override cap_mac_admin cap_syslog 
+        cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon 
+        cap_bpf cap_checkpoint_restore
+PermittedCapabilities=cap_chown cap_dac_override cap_dac_read_search 
+        cap_fowner cap_fsetid cap_kill cap_setgid 
+        cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service 
+        cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock 
+        cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot 
+        cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot 
+        cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config 
+        cap_mknod cap_lease cap_audit_write cap_audit_control 
+        cap_setfcap cap_mac_override cap_mac_admin cap_syslog 
+        cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon 
+        cap_bpf cap_checkpoint_restore
+InheritableCapabilities=
+BoundingCapabilities=cap_chown cap_dac_override cap_dac_read_search 
+        cap_fowner cap_fsetid cap_kill cap_setgid 
+        cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service 
+        cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock 
+        cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot 
+        cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot 
+        cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config 
+        cap_mknod cap_lease cap_audit_write cap_audit_control 
+        cap_setfcap cap_mac_override cap_mac_admin cap_syslog 
+        cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon 
+        cap_bpf cap_checkpoint_restore
+
+5.查看 BMC 狀態 
   busctl get-property xyz.openbmc_project.State.BMC /xyz/openbmc_project/state/bmc0 xyz.openbmc_project.State.BMC CurrentBMCState
+⭐️ Result
+s "xyz.openbmc_project.State.BMC.BMCState.NotReady"
 
 6.檢視指定物件底下的所有介面與屬性
   busctl introspect xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0
@@ -207,7 +270,7 @@ xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host SetHostTransition
         `- /xyz/openbmc_project/logging/internal/manager
 
 11.監聽 HOST service 的事件
-   busctl monitor xyz.openbmc_project.State.Host
+   busctl monitor xyz.openbmc_project.State.Host  #只要有任何程式對這個 Host 服務發送請求、修改屬性、或是狀態發生改變，畫面就會立刻印出即時的訊號與內容。
 ⭐️ Result
 Monitoring bus message stream.
 > Type=signal  Endian=l  Flags=1  Version=1 Cookie=11393  Timestamp="Fri 2026-08-21 10:30:26.128412 UTC"
