@@ -1,4 +1,4 @@
-#OpenBMC D-bus 透過指令 busctl 探索 OpenBMC 底層的 D-Bus 物件路徑
+#OpenBMC D-bus 透過指令 busctl、obmcutil、 journalctl 探索 OpenBMC 底層的 D-Bus 物件路徑
 
 步驟
 1.透過SSH 連線到QEMU 模擬器中
