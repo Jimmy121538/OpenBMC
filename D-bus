@@ -231,10 +231,7 @@ Monitoring bus message stream.
 ⭐️ Result
 s "xyz.openbmc_project.State.BMC.BMCState.Quiesced" 
 
-10.執行伺服器開機指令
-  obmcutil poweron
-
-11.使用 obmcutil 小工具 查看狀態服務的狀態
+10.使用 obmcutil 小工具 查看狀態服務的狀態
    obmcutil state  #與 busctl 一層一層手動查詢 D-Bus 屬性不同，obmcutil 是一個整合好的命令列工具，並把目前最重要的幾個系統狀態整理成乾淨易讀的表格印出來。
 ⭐️ Result
 CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.Quiesced  #BMC 目前處於保護或靜默狀態。
