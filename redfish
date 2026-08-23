@@ -37,7 +37,7 @@
   "Name": "Computer System Collection"
 
 3.查詢單一系統狀態
-  curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems/systemm  #向 BMC 查詢這台編號為 system 的伺服器主機的詳細狀態與硬體資訊。
+  curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems/system  #向 BMC 查詢這台編號為 system 的伺服器主機的詳細狀態與硬體資訊。
 ⭐️ Result
 {
   "@odata.id": "/redfish/v1/Systems/system",
