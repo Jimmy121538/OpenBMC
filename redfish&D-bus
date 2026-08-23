@@ -1,6 +1,7 @@
 #從 D-bus 更改，再由 Redfish 驗證
 1.切換伺服器主機電源為 On
-  busctl set-property xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host RequestedHostTransition s "xyz.openbmc_project.State.Host.Transition.On"
+  busctl set-property xyz.openbmc_project.State.Chassis 
+/xyz/openbmc_project/state/chassis0 xyz.openbmc_project.State.Chassis RequestedPowerTransition s "xyz.openbmc_project.State.Chassis.Transition.On"
 
 2.查看系統狀態
   obmcutil state 
@@ -11,7 +12,7 @@ CurrentHostState    : xyz.openbmc_project.State.Host.HostState.TransitioningToRu
 BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.Unspecified
 OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive
 
-2.驗證 Redfish
+3.驗證 Redfish
   curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems/system   | jq '.PowerState'
 ⭐️ Result
    % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
