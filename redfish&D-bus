@@ -1,7 +1,8 @@
 #從 D-bus 更改，再由 Redfish 驗證
 1.執行伺服器開機指令
   obmcutil poweron
-  查看系統狀態
+
+2.查看系統狀態
   obmcutil state 
 ⭐️ Result
 CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.Ready
@@ -10,7 +11,7 @@ CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Running
 BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.OSStart
 OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Standby
 
-2.驗證 Redfish
+3.驗證 Redfish
   curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems/system   | jq '.PowerState'
 ⭐️ Result
  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
@@ -28,9 +29,26 @@ OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.
   "RoleId": "Administrator"
 }' \
 https://127.0.0.1:8443/redfish/v1/AccountService/Accounts
-  
 
-2.驗證 D-bus
+2.查看是否新增
+  curl -k -u root:0penBmchttps://127.0.0.1:8443/redfish/v1/AccountService/Accounts
+⭐️ Result
+{
+  "@odata.id": "/redfish/v1/AccountService/Accounts",
+  "@odata.type": "#ManagerAccountCollection.ManagerAccountCollection",
+  "Description": "BMC User Accounts",
+  "Members": [
+    {
+      "@odata.id": "/redfish/v1/AccountService/Accounts/jimmy"
+    },
+    {
+      "@odata.id": "/redfish/v1/AccountService/Accounts/root"
+    }
+  ],
+  "Members@odata.count": 2,
+  "Name": "Accounts Collection"
+
+3.驗證 D-bus
   busctl tree xyz.openbmc_project.User.Manager
 ⭐️ Result
 `- /xyz
