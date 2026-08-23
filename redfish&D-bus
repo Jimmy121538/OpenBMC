@@ -1,5 +1,8 @@
-#從 D-bus 查看，再由 Redfish 驗證
-1.查看系統狀態
+#從 D-bus 更改，再由 Redfish 驗證
+1.切換伺服器主機電源為 On
+  busctl set-property xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0 xyz.openbmc_project.State.Host RequestedHostTransition s "xyz.openbmc_project.State.Host.Transition.On"
+
+2.查看系統狀態
   obmcutil state 
 ⭐️ Result
 CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.NotReady
