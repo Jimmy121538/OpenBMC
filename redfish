@@ -150,7 +150,7 @@
   "SystemType": "Physical"
 
 4.查詢日誌服務清單
-  https://127.0.0.1:8443/redfish/v1/Systems/system/LogServices
+  curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems/system/LogServices
 ⭐️ Result
 {
   "@odata.id": "/redfish/v1/Systems/system/LogServices",
@@ -165,7 +165,7 @@
   "Name": "System Log Services Collection"
 
 5.具體的事件日誌明細
-  https://127.0.0.1:8443/redfish/v1/Systems/system/LogServices/EventLog/Entries
+  curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems/system/LogServices/EventLog/Entries
 ⭐️ Result
 {
   "@odata.id": "/redfish/v1/Systems/system/LogServices/EventLog/Entries",
