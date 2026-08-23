@@ -16,7 +16,7 @@ OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.
 100   2487 100   2487   0      0   2766      0                              0
 "Off" 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-#從 Redfish 更改，再由 D-bus 驗證
+#從 Redfish 新增使用者，再由 D-bus 驗證
 1.透過 Redfish 新增使用者
   curl -k -u root:0penBmc -X POST -H "Content-Type: application/json" \
 -d '{
