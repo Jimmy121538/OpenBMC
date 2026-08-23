@@ -262,6 +262,15 @@ CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Off
 BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.Unspecified
 OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive
 
+14.切換 BMC 狀態為 ready
+  busctl set-property xyz.openbmc_project.State.BMC /xyz/openbmc_project/state/bmc0 xyz.openbmc_project.State.BMC CurrentBMCState s "xyz.openbmc_project.State.BMC.BMCState.Ready"
+  輸入 obmcutil state 查看
+⭐️ Result
+CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.Ready
+CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.Off
+CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Off
+BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.Unspecified
+OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive
 
 
 
