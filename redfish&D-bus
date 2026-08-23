@@ -3,7 +3,7 @@
   obmcutil state 
 ⭐️ Result
 CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.NotReady
-CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.Off
+CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.Off  
 CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Off
 BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.Unspecified
 OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive
@@ -14,7 +14,7 @@ OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.
   % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
                                  Dload  Upload  Total   Spent   Left   Speed
 100   2487 100   2487   0      0   2766      0                              0
-"Off"
+"Off" 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 #從 Redfish 更改，再由 D-bus 驗證
 1.透過 Redfish 新增使用者
