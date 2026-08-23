@@ -5,19 +5,19 @@
 2.查看系統狀態
   obmcutil state 
 ⭐️ Result
-CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.NotReady
-CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.Off  
-CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Off
+CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.Ready
+CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.TransitioningToOn
+CurrentHostState    : xyz.openbmc_project.State.Host.HostState.TransitioningToRunning
 BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.Unspecified
 OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive
 
 2.驗證 Redfish
   curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems/system   | jq '.PowerState'
 ⭐️ Result
-  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+   % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
                                  Dload  Upload  Total   Spent   Left   Speed
-100   2487 100   2487   0      0   2766      0                              0
-"Off" 
+100   2637 100   2637   0      0   2717      0                              0
+"PoweringOn" 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 #從 Redfish 新增使用者，再由 D-bus 驗證
 1.透過 Redfish 新增使用者
