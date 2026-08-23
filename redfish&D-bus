@@ -19,4 +19,22 @@ OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.
 "PoweringOn"
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 #從 Redfish 更改，再由 D-bus 驗證
+1.透過 Redfish 新增使用者
+  curl -k -u root:0penBmc -X POST -H "Content-Type: application/json" \
+-d '{
+  "UserName": "jimmy",
+  "Password": "P@ssw0rd123",
+  "Enabled": true,
+  "RoleId": "Administrator"
+}' \
+https://127.0.0.1:8443/redfish/v1/AccountService/Accounts
+  
 
+2.驗證 D-bus
+  busctl tree xyz.openbmc_project.User.Manager
+⭐️ Result
+`- /xyz
+  `- /xyz/openbmc_project
+    `- /xyz/openbmc_project/user
+      |- /xyz/openbmc_project/user/jimmy   #新增一個名為jimmy的user
+      `- /xyz/openbmc_project/user/root
