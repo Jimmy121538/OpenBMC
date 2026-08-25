@@ -55,6 +55,7 @@ xyz.openbmc_project.State.OperatingSystem.Status interface -         -          
 
 5.呼叫 D-Bus 物件的 Introspect 方法取得原始的 XML 規格書，並透過 sed 將它還原成排版整齊、看得懂的 XML 格式。
   busctl call xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0 org.freedesktop.DBus.Introspectable Introspect | sed 's/\\n/\n/g; s/\\"/"/g'
+  #|(pipe)把前半段指令所「輸出」的那一大串原始文字，直接當作「輸入」傳遞給下一個指令來處理。
 ⭐️ Result
 s "<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
 "https://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
