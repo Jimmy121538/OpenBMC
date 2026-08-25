@@ -25,7 +25,7 @@ NAME                                                   PID PROCESS         USER 
 ---
 xyz.openbmc_project.Certs.Manager.Authority.Truststore 247 phosphor-certif root             :1.13      phosphor-certificate-manager@authority.service   -      -          
                        
-4.檢視指定物件底下的所有介面與屬性
+4.檢視指定物件底下的所有介面、方法、屬性與信號
   busctl introspect xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0
 ⭐️ Result
 NAME                                             TYPE      SIGNATURE RESULT/VALUE                                                                                  FLAGS                
@@ -53,7 +53,82 @@ xyz.openbmc_project.State.Host                   interface -         -          
 xyz.openbmc_project.State.OperatingSystem.Status interface -         -                                                                                             -                    
 .OperatingSystemState                            property  s         "xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive"                          emits-change writable
 
-5.檢查特定的 D-Bus 服務狀態
+5.呼叫 D-Bus 物件的 Introspect 方法取得原始的 XML 規格書，並透過 sed 將它還原成排版整齊、看得懂的 XML 格式。
+  busctl call xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0 org.freedesktop.DBus.Introspectable Introspect | sed 's/\\n/\n/g; s/\\"/"/g'
+⭐️ Result
+s "<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+"https://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+ <interface name="org.freedesktop.DBus.Peer">
+  <method name="Ping"/>
+  <method name="GetMachineId">
+   <arg type="s" name="machine_uuid" direction="out"/>
+  </method>
+ </interface>
+ <interface name="org.freedesktop.DBus.Introspectable">
+  <method name="Introspect">
+   <arg name="xml_data" type="s" direction="out"/>
+  </method>
+ </interface>
+ <interface name="org.freedesktop.DBus.Properties">
+  <method name="Get">
+   <arg name="interface_name" direction="in" type="s"/>
+   <arg name="property_name" direction="in" type="s"/>
+   <arg name="value" direction="out" type="v"/>
+  </method>
+  <method name="GetAll">
+   <arg name="interface_name" direction="in" type="s"/>
+   <arg name="props" direction="out" type="a{sv}"/>
+  </method>
+  <method name="Set">
+   <arg name="interface_name" direction="in" type="s"/>
+   <arg name="property_name" direction="in" type="s"/>
+   <arg name="value" direction="in" type="v"/>
+  </method>
+  <signal name="PropertiesChanged">
+   <arg type="s" name="interface_name"/>
+   <arg type="a{sv}" name="changed_properties"/>
+   <arg type="as" name="invalidated_properties"/>
+  </signal>
+ </interface>
+ <interface name="xyz.openbmc_project.State.Host">
+  <property name="RequestedHostTransition" type="s" access="readwrite">
+   <annotation name="org.freedesktop.systemd1.Privileged" value="true"/>
+  </property>
+  <property name="AllowedHostTransitions" type="as" access="read">
+   <annotation name="org.freedesktop.DBus.Property.EmitsChangedSignal" value="const"/>
+  </property>
+  <property name="CurrentHostState" type="s" access="readwrite">
+   <annotation name="org.freedesktop.systemd1.Privileged" value="true"/>
+  </property>
+  <property name="RestartCause" type="s" access="readwrite">
+   <annotation name="org.freedesktop.systemd1.Privileged" value="true"/>
+  </property>
+ </interface>
+ <interface name="xyz.openbmc_project.State.Boot.Progress">
+  <property name="BootProgress" type="s" access="readwrite">
+   <annotation name="org.freedesktop.systemd1.Privileged" value="true"/>
+  </property>
+  <property name="BootProgressLastUpdate" type="t" access="readwrite">
+   <annotation name="org.freedesktop.systemd1.Privileged" value="true"/>
+  </property>
+ </interface>
+ <interface name="xyz.openbmc_project.Control.Boot.RebootAttempts">
+  <property name="AttemptsLeft" type="u" access="readwrite">
+   <annotation name="org.freedesktop.systemd1.Privileged" value="true"/>
+  </property>
+  <property name="RetryAttempts" type="u" access="readwrite">
+   <annotation name="org.freedesktop.systemd1.Privileged" value="true"/>
+  </property>
+ </interface>
+ <interface name="xyz.openbmc_project.State.OperatingSystem.Status">
+  <property name="OperatingSystemState" type="s" access="readwrite">
+   <annotation name="org.freedesktop.systemd1.Privileged" value="true"/>
+  </property>
+ </interface>
+</node>
+"
+6.檢查特定的 D-Bus 服務狀態
 ⭐️ Result
   busctl status xyz.openbmc_project.State.Host #主機狀態管理服務
 PID=363    #Process ID，進程識別碼，執行中的程式的「身分證字號」
@@ -116,7 +191,7 @@ BoundingCapabilities=cap_chown cap_dac_override cap_dac_read_search
         cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon 
         cap_bpf cap_checkpoint_restore
 
-6.檢視日誌服務樹狀圖
+7.檢視日誌服務樹狀圖
   busctl tree xyz.openbmc_project.Logging
 ⭐️ Result
 `- /xyz
@@ -160,49 +235,7 @@ BoundingCapabilities=cap_chown cap_dac_override cap_dac_read_search
       `- /xyz/openbmc_project/logging/internal
         `- /xyz/openbmc_project/logging/internal/manager
 
-7.執行單筆刪除指令
-  busctl call xyz.openbmc_project.Logging /xyz/openbmc_project/logging/entry/10 xyz.openbmc_project.Object.Delete Delete
-  再輸入 busctl tree xyz.openbmc_project.Logging 確認是否刪除
-⭐️ Result
-`- /xyz
-  `- /xyz/openbmc_project
-    `- /xyz/openbmc_project/logging
-      |- /xyz/openbmc_project/logging/entry
-      | |- /xyz/openbmc_project/logging/entry/11
-      | |- /xyz/openbmc_project/logging/entry/12
-      | |- /xyz/openbmc_project/logging/entry/13
-      | |- /xyz/openbmc_project/logging/entry/14
-      | |- /xyz/openbmc_project/logging/entry/15
-      | |- /xyz/openbmc_project/logging/entry/16
-      | |- /xyz/openbmc_project/logging/entry/17
-      | |- /xyz/openbmc_project/logging/entry/18
-      | |- /xyz/openbmc_project/logging/entry/19
-      | |- /xyz/openbmc_project/logging/entry/2
-      | |- /xyz/openbmc_project/logging/entry/20
-      | |- /xyz/openbmc_project/logging/entry/21
-      | |- /xyz/openbmc_project/logging/entry/22
-      | |- /xyz/openbmc_project/logging/entry/23
-      | |- /xyz/openbmc_project/logging/entry/24
-      | |- /xyz/openbmc_project/logging/entry/25
-      | |- /xyz/openbmc_project/logging/entry/26
-      | |- /xyz/openbmc_project/logging/entry/27
-      | |- /xyz/openbmc_project/logging/entry/28
-      | |- /xyz/openbmc_project/logging/entry/29
-      | |- /xyz/openbmc_project/logging/entry/3
-      | |- /xyz/openbmc_project/logging/entry/30
-      | |- /xyz/openbmc_project/logging/entry/31
-      | |- /xyz/openbmc_project/logging/entry/32
-      | |- /xyz/openbmc_project/logging/entry/33
-      | |- /xyz/openbmc_project/logging/entry/34
-      | |- /xyz/openbmc_project/logging/entry/35
-      | |- /xyz/openbmc_project/logging/entry/4
-      | |- /xyz/openbmc_project/logging/entry/5
-      | |- /xyz/openbmc_project/logging/entry/6
-      | |- /xyz/openbmc_project/logging/entry/7
-      | |- /xyz/openbmc_project/logging/entry/8
-      | `- /xyz/openbmc_project/logging/entry/9
-      `- /xyz/openbmc_project/logging/internal
-        `- /xyz/openbmc_project/logging/internal/manager
+
 
 8.監聽 HOST service 的事件
    busctl monitor xyz.openbmc_project.State.Host  #只要有任何程式對這個 Host 服務發送請求、修改屬性、或是狀態發生改變，畫面就會立刻印出即時的訊號與內容。
