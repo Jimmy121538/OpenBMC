@@ -275,7 +275,7 @@ BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.Uns
 OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive #未激活
 
 12.透過日誌指令 journalctl 查看報錯訊息
-  journalctl -p err -b  #只篩選出「錯誤（Error）」等級的訊息
+  journalctl -p err -b  #-p(Priority,優先級) -b(boot,開機階段)
 ⭐️ Result
 Aug 21 10:34:11 evb-ast2600 kernel: aspeed-rtc 1e781000.rtc: hctosys: unable to read the hardware clock
 Aug 21 10:34:13 evb-ast2600 kernel: aspeed-edac 1e6e0000.sdram: ECC mode is not configured in u-boot
