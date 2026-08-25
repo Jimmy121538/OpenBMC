@@ -189,7 +189,7 @@
 
 8.查詢伺服器目前電源狀態
   curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems/system \
-  | jq '.PowerState'
+  | jq '.PowerState'     
 ⭐️ Result
  | jq '.PowerState'
   % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
