@@ -1,4 +1,4 @@
-#OpenBMC D-bus 透過指令 busctl、obmcutil、 journalctl 探索 OpenBMC 底層的 D-Bus 物件路徑
+#OpenBMC D-bus 透過指令 busctl、obmcutil 探索 OpenBMC 底層的 D-Bus 物件路徑
 
 步驟
 1.透過SSH 連線到QEMU 模擬器中
@@ -273,6 +273,8 @@ CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.Off #伺服�
 CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Off  #主機 CPU 目前也是關機狀態。
 BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.Unspecified 
 OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive #未激活
+
+#當 OpenBMC 的 D-Bus 相關 Daemon（例如 LED 服務）因為相依性或逾時起不來時，可以透過以下 systemd/journald 工具進行排查。
 
 12.透過日誌指令 journalctl 查看報錯訊息
   journalctl -p err -b  #-p(Priority,優先級) -b(boot,開機階段)
