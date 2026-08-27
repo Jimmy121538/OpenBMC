@@ -263,7 +263,7 @@ Monitoring bus message stream.
 9.查看 BMC 狀態 
   busctl get-property xyz.openbmc_project.State.BMC /xyz/openbmc_project/state/bmc0 xyz.openbmc_project.State.BMC CurrentBMCState
 ⭐️ Result
-s "xyz.openbmc_project.State.BMC.BMCState.Quiesced" 
+s "xyz.openbmc_project.State.BMC.BMCState.Quiesced" #BMC 系統因為某個關鍵服務嚴重崩潰或啟動逾時（Timeout），進入了安全保護或異常靜止狀態（Quiesced）。
 
 10.使用 obmcutil 小工具 查看狀態服務的狀態
    obmcutil state  #與 busctl 一層一層手動查詢 D-Bus 屬性不同，obmcutil 是一個整合好的命令列工具，並把目前最重要的幾個系統狀態整理成乾淨易讀的表格印出來。
