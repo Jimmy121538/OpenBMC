@@ -3,14 +3,9 @@
   busctl set-property xyz.openbmc_project.State.Chassis 
 /xyz/openbmc_project/state/chassis0 xyz.openbmc_project.State.Chassis RequestedPowerTransition s "xyz.openbmc_project.State.Chassis.Transition.On"
 
-2.查看系統狀態
-  obmcutil state 
-⭐️ Result
-CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.Ready
-CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.TransitioningToOn
-CurrentHostState    : xyz.openbmc_project.State.Host.HostState.TransitioningToRunning
-BootProgress        : xyz.openbmc_project.State.Boot.Progress.ProgressStages.Unspecified
-OperatingSystemState: xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive
+2.查看主機電源狀態
+  busctl get-property xyz.openbmc_project.State.Chassis /xyz/openbmc_project/state/chassis0 xyz.openbmc_project.State.Chassis CurrentPowerState 
+s "xyz.openbmc_project.State.Chassis.PowerState.TransitioningToOn"
 
 3.驗證 Redfish
   curl -k -u root:0penBmc https://127.0.0.1:8443/redfish/v1/Systems/system   | jq '.PowerState'
