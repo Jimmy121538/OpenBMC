@@ -182,7 +182,7 @@
   https://127.0.0.1:8443/redfish/v1/Systems/system/Actions/ComputerSystem.Reset  
 
 7.透過 Redfish API 「發送指令將伺服器關機」
-  curl -k -u root:0penBmc -X POST \
+  curl -k -u root:0penBmc -X POST \     
   -H "Content-Type: application/json" \
   -d '{"ResetType": "GracefulShutdown"}' \    # Graceful Shutdown 正常關機
   https://127.0.0.1:8443/redfish/v1/Systems/system/Actions/ComputerSystem.Reset
