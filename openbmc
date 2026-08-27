@@ -1,5 +1,0 @@
-> 線上好讀版：https://hackmd.io/@Jimmy121538/Sym6TEtDMg
-# OpenBMC Core Definition
-
-* **定義**：OpenBMC 是一個開源的、基於 Linux 的作業系統框架，專門設計用於伺服器、網路交換器、儲存設備等硬體的 **BMC（Baseboard Management Controller，基板管理控制器）**。
-* **背景與起源**：過去各大伺服器廠商（如 Dell、HP、IBM、Facebook 等）的 BMC 韌體多半是封閉原始碼且各自為政。為了統一標準、提升安全性與社群協作，由 Meta (Facebook)、Google、Microsoft、Intel 與 IBM 等大廠於 2015 年共同推動了 OpenBMC 專案，目前由 Linux 基金會託管。
