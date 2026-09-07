@@ -72,7 +72,7 @@ Signal
 
 * 04_redfish & D-bus
   * **驗證 DBus`CurrentPowerState`↔redfish`.PowerState`**
-  * **驗證 redfish`AccountService/Accounts`↔DBus`User.Manager`**
+  * **驗證 redfish `AccountService/Accounts`↔DBus`User.Manager`**
   * **展示兩種介面查詢一致性的測試。**
 
 * OpenBMC concepts - HackMD
